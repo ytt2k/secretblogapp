@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, Link } from "theme-ui";
 
 const Footer = () => {
   return (
@@ -21,7 +21,16 @@ const Footer = () => {
           width: "100%"
         }}
       >
-        made with 🤍 by <i>ytt2k</i>
+        made with 🤍 by&nbsp;
+        <i>
+          <Link
+            variant="footer"
+            href="https://github.com/ytt2k"
+            target="_blank"
+          >
+            ytt2k
+          </Link>
+        </i>
       </footer>
     </div>
   );

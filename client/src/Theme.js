@@ -67,6 +67,12 @@ const theme = merge(toTheme(githubTheme), {
       color: "text",
       fontSize: "0.9em"
     }
+  },
+  links: {
+    footer: {
+      color: "title",
+      textDecoration: "none"
+    }
   }
 });
 
