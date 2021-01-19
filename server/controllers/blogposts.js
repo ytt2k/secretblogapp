@@ -78,22 +78,6 @@ export const deleteBlogPost = async (req, res) => {
     await BlogPost.findByIdAndRemove(id);
 
     res.json({ message: "Blogpost deleted successfully." });
-
-    // 👇 change above to the below one when using auth, still needs work
-
-    // const token = getTokenFrom(req);
-
-    // const decodedToken = jwt.verify(token, process.env.SECRET);
-    // if (!token || !decodedToken.id) {
-    //   return res.status(401).json({ error: "Token is missing or invalid." });
-    // }
-    // const userFromToken = await User.findById(decodedToken.id);
-    // const blogPost = await BlogPost.findById(id);
-
-    // if (userFromToken._id.toString() === blogPost.user.toString()) {
-    //   await BlogPost.findByIdAndRemove(id);
-    //   res.json({ message: "Blogpost deleted successfully." });
-    //   res.status(204).end();
   } catch (error) {
     res.status(409).json({ message: error });
   }

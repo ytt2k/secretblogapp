@@ -6,12 +6,10 @@ const loginUrl = "https://secretblogapp.herokuapp.com/api/login";
 
 const signUpUrl = "https://secretblogapp.herokuapp.com/api/signup";
 
-// get currentUser (token) from localstorage
 const authHeader = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (currentUser) {
-    // for Node.js Express back-end
     return { Authorization: "Bearer " + currentUser };
   } else {
     return {};

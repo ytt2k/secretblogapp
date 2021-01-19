@@ -1,13 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Text } from "theme-ui";
+import { jsx } from "theme-ui";
 import { useSelector } from "react-redux";
-import { Progress, Container, Divider, Heading } from "theme-ui";
+import { Container, Divider, Heading } from "theme-ui";
 import BlogPost from "./blogpost/BlogPost";
 
 const BlogPosts = ({ setCurrentId, user, currentUser, isLoggedIn }) => {
   const blogPosts = useSelector((state) => state.blogPosts);
-  console.log(blogPosts);
   return (
     <div>
       {!blogPosts.length ? (

@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import { useDispatch } from "react-redux";
 import { logout } from "../actions/user";
-import { Button, Box, Text, Heading, Card, Container } from "theme-ui";
+import { Button, Box, Text, Heading, Card } from "theme-ui";
 
 const Info = ({ user, currentUser }) => {
   const dispatch = useDispatch();
@@ -17,9 +17,7 @@ const Info = ({ user, currentUser }) => {
     dispatch(logout());
     window.localStorage.removeItem("currentUser");
   };
-  console.log(user);
-  console.log(currentUser);
-  // set token in localstorage
+
   window.localStorage.setItem("currentUser", JSON.stringify(currentUser.token));
 
   return (
@@ -38,7 +36,7 @@ const Info = ({ user, currentUser }) => {
       >
         <Card sx={{ boxShadow: "none" }}>
           {user ? (
-            <div sx={{marginTop: "2em"}}>
+            <div sx={{ marginTop: "2em" }}>
               <Text>
                 logged in as
                 <Heading as="h4" color="label" sx={{ display: "inline" }}>
