@@ -40,18 +40,21 @@ const BlogPosts = ({ setCurrentId, user, currentUser, isLoggedIn }) => {
           <Container
             sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
           >
-            {blogPosts.map((blogPost) => {
-              return (
-                <BlogPost
-                  key={blogPost._id}
-                  blogPost={blogPost}
-                  setCurrentId={setCurrentId}
-                  user={user}
-                  currentUser={currentUser}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
-            })}
+            {blogPosts
+              .slice(0)
+              .reverse()
+              .map((blogPost) => {
+                return (
+                  <BlogPost
+                    key={blogPost._id}
+                    blogPost={blogPost}
+                    setCurrentId={setCurrentId}
+                    user={user}
+                    currentUser={currentUser}
+                    isLoggedIn={isLoggedIn}
+                  />
+                );
+              })}
           </Container>
         </div>
       )}
