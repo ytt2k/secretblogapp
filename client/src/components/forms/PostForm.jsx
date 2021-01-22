@@ -2,15 +2,17 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { useState, useEffect } from "react";
-import { Heading, Label, Button, Box, Textarea, Input } from "theme-ui";
+import { Heading, Label, Button, Box, Textarea, Input, Text } from "theme-ui";
 import { useDispatch, useSelector } from "react-redux";
 import { createBlogPost, updateBlogPost } from "../../actions/blogPosts";
+import { useForm } from "react-hook-form";
 
 const PostForm = ({ currentId, setCurrentId }) => {
   const [blogPostData, setBlogPostData] = useState({
     title: "",
     content: ""
   });
+  const { register, handleSubmit, errors } = useForm();
 
   const blogPost = useSelector((state) =>
     currentId
@@ -24,9 +26,7 @@ const PostForm = ({ currentId, setCurrentId }) => {
     if (blogPost) setBlogPostData(blogPost);
   }, [blogPost]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleCreatePost = () => {
     if (currentId) {
       dispatch(updateBlogPost(currentId, blogPostData));
     } else {
@@ -52,7 +52,7 @@ const PostForm = ({ currentId, setCurrentId }) => {
         m={1}
         autoComplete="off"
         noValidate
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(handleCreatePost)}
       >
         <Heading as="h3" color="form">
           {currentId ? "Edit" : "New"} post
@@ -66,7 +66,15 @@ const PostForm = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setBlogPostData({ ...blogPostData, title: e.target.value })
           }
+          ref={register({
+            required: "Please choose a title",
+            minLength: {
+              value: 1,
+              message: "Please choose a title"
+            }
+          })}
         />
+        <Text>{errors.title && errors.title.message}</Text>
         <Label>Content</Label>
         <Textarea
           name="content"
@@ -76,10 +84,17 @@ const PostForm = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setBlogPostData({ ...blogPostData, content: e.target.value })
           }
+          ref={register({
+            required: "Please write some content",
+            minLength: {
+              value: 1,
+              message: "Please write some content"
+            }
+          })}
         />
+        <Text>{errors.content && errors.content.message}</Text>
         <Button type="submit">Post</Button>
       </Box>
-      {/* <Button sx={{float: "right"}} onClick={clear}>Clear post</Button> */}
     </div>
   );
 };
