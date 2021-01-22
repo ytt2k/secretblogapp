@@ -12,6 +12,7 @@ const PostForm = ({ currentId, setCurrentId }) => {
     title: "",
     content: ""
   });
+  const [message, setMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();
 
   const blogPost = useSelector((state) =>
@@ -32,6 +33,10 @@ const PostForm = ({ currentId, setCurrentId }) => {
     } else {
       dispatch(createBlogPost(blogPostData));
     }
+    setMessage("Successfully posted!");
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
     clear();
   };
 
@@ -93,6 +98,7 @@ const PostForm = ({ currentId, setCurrentId }) => {
           })}
         />
         <Text>{errors.content && errors.content.message}</Text>
+        <Text>{message}</Text>
         <Button type="submit">Post</Button>
       </Box>
     </div>
