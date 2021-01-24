@@ -2,7 +2,7 @@
 
 ✨ create your own posts
 
-✨ like others' posts
+✨ give hearts to others' posts
 
 built with MERN + Redux
 
